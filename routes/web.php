@@ -7,4 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contract', [ContractController::class, 'index'])->name('contractIndex');
+Route::get('/contract', [ContractController::class, 'index'])
+    ->middleware('throttle:contract')
+    ->name('contractIndex');
