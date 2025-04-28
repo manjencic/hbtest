@@ -15,27 +15,11 @@ class ContractController extends Controller
 
     public function index(Request $request)
     {
-        $this->contractService->update(556515, 'Igor Manjencic');
-        echo 'sadsa';exit;
-    }
+        $success = $this->contractService->update(556515, 'Igor Manjencic');
 
-    public function update(Request $request)
-    {
-        $request->validate([
-            'id' => 'required|integer',
-            'name' => 'required|string|max:255',
+        return view('contractUpdate')->with([
+            'status' => $success ? 'OK' : 'Error'
         ]);
-
-        return response()->json(
-            [
-                'status' => 'success',
-                'message' => 'Contract updated successfully',
-                'data' => [
-                    'id' => $request->id,
-                    'name' => $request->name,
-                ]
-            ]
-        );
     }
 }
 

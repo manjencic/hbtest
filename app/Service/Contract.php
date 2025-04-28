@@ -14,8 +14,6 @@ class Contract
 
     public function update($id, $description)
     {
-        $contract = $this->client->getContract($id);
-
-        $contract->setDescription($description);
+        return $this->client->updateContract($id, $description);
     }
 }
